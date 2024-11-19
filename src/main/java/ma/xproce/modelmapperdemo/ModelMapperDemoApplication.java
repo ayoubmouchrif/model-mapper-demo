@@ -1,6 +1,7 @@
 package ma.xproce.modelmapperdemo;
 
 import ma.xproce.modelmapperdemo.dtos.CustomerDTO;
+import ma.xproce.modelmapperdemo.dtos.CustomerDtoNew;
 import ma.xproce.modelmapperdemo.entities.Customer;
 import ma.xproce.modelmapperdemo.mappers.CustomerMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,8 +50,14 @@ public class ModelMapperDemoApplication {
                             .map(customerMapper::fromCustomer)
                             .collect(Collectors.toList());
 
+            List<CustomerDtoNew> customerDtosNewList =
+                    customers.stream()
+                            .map(customerMapper::fromCustomerToNewDto)
+                            .collect(Collectors.toList());
+
             System.out.println(customers);
             System.out.println(customerdtosList);
+            System.out.println(customerDtosNewList);
         };
     }
 }
